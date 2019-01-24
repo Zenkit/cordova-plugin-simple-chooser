@@ -38,16 +38,8 @@ class Chooser : CDVPlugin {
 			options: [],
 			error: &error
 		) { newURL in
-			let maybeData = try? Data(contentsOf: newURL, options: [])
-
-			guard let data = maybeData else {
-				self.sendError("Failed to fetch data.")
-				return
-			}
-
 			do {
 				let result = [
-					"data": data.base64EncodedString(),
 					"mediaType": self.detectMimeType(newURL),
 					"name": newURL.lastPathComponent,
 					"uri": newURL.absoluteString
@@ -80,8 +72,8 @@ class Chooser : CDVPlugin {
 		url.stopAccessingSecurityScopedResource()
 	}
 
-	@objc(getFile:)
-	func getFile (command: CDVInvokedUrlCommand) {
+	@objc(chooseFile:)
+	func chooseFile (command: CDVInvokedUrlCommand) {
 		self.commandCallback = command.callbackId
 
 		let accept = command.arguments.first as! String
@@ -163,6 +155,6 @@ extension Chooser : UIDocumentPickerDelegate {
 	}
 
 	func documentPickerWasCancelled (_ controller: UIDocumentPickerViewController) {
-		self.send("RESULT_CANCELED")
+		self.sendError("No File Selected")
 	}
 }

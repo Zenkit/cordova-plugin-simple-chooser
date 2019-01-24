@@ -1,13 +1,11 @@
 {
-	"name": "cordova-plugin-chooser",
+	"name": "cordova-plugin-simple-chooser",
 	"version": "1.2.4",
-	"description": "Cordova file chooser plugin",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/cyph/cordova-plugin-chooser.git"
-	},
+	"description": "A simple file chooser plugin for Cordova.",
+	"repository": "git+https://github.com/zenkit/cordova-plugin-simple-chooser.git",
 	"keywords": [
+		"cordova",
+		"plugin",
 		"file",
 		"chooser",
 		"picker",
@@ -15,13 +13,13 @@
 		"android",
 		"ios"
 	],
-	"author": "Cyph, Inc. <cordova-plugin-chooser@cyph.com> (https://github.com/cyph)",
+	"author": "Zenkit <info@zenkit.com>",
 	"license": "Apache-2.0",
 	"bugs": {
-		"url": "https://github.com/cyph/cordova-plugin-chooser/issues"
+		"url": "https://github.com/zenkit/cordova-plugin-simple-chooser/issues"
 	},
 	"cordova": {
-		"id": "cordova-plugin-chooser",
+		"id": "cordova-plugin-simple-chooser",
 		"platforms": [
 			"android",
 			"ios"

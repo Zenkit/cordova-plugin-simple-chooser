@@ -1,4 +1,4 @@
-package com.cyph.cordova;
+package com.zenkit.cordova;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -22,21 +22,9 @@ import org.json.JSONObject;
 
 
 public class Chooser extends CordovaPlugin {
-	private static final String ACTION_OPEN = "getFile";
+	private static final String ACTION_OPEN = "chooseFile";
 	private static final int PICK_FILE_REQUEST = 1;
 	private static final String TAG = "Chooser";
-
-	/** @see https://stackoverflow.com/a/17861016/459881 */
-	public static byte[] getBytesFromInputStream (InputStream is) throws IOException {
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		byte[] buffer = new byte[0xFFFF];
-
-		for (int len = is.read(buffer); len != -1; len = is.read(buffer)) {
-			os.write(buffer, 0, len);
-		}
-
-		return os.toByteArray();
-	}
 
 	/** @see https://stackoverflow.com/a/23270545/459881 */
 	public static String getDisplayName (ContentResolver contentResolver, Uri uri) {
@@ -53,7 +41,7 @@ public class Chooser extends CordovaPlugin {
 			}
 		}
 
-		return "File";
+		return null;
 	}
 
 
@@ -113,15 +101,8 @@ public class Chooser extends CordovaPlugin {
 							mediaType = "application/octet-stream";
 						}
 
-						byte[] bytes = Chooser.getBytesFromInputStream(
-							contentResolver.openInputStream(uri)
-						);
-
-						String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
-
 						JSONObject result = new JSONObject();
 
-						result.put("data", base64);
 						result.put("mediaType", mediaType);
 						result.put("name", name);
 						result.put("uri", uri.toString());
@@ -133,7 +114,7 @@ public class Chooser extends CordovaPlugin {
 					}
 				}
 				else if (resultCode == Activity.RESULT_CANCELED) {
-					this.callback.success("RESULT_CANCELED");
+					this.callback.error("No File selected.");
 				}
 				else {
 					this.callback.error(resultCode);
