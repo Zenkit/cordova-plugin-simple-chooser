@@ -1,6 +1,6 @@
 {
 	"name": "cordova-plugin-simple-chooser",
-	"version": "1.2.4",
+	"version": "2.0.0",
 	"description": "A simple file chooser plugin for Cordova.",
 	"repository": "git+https://github.com/zenkit/cordova-plugin-simple-chooser.git",
 	"keywords": [

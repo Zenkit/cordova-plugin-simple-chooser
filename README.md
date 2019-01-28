@@ -10,7 +10,7 @@ but without using `Promise` and without loading the file `data` (can be done wit
 Install with Cordova CLI:
 
 ```sh
-cordova plugin add https://github.com/zenkit/cordova-plugin-simple-chooser
+cordova plugin add https://github.com/zenkit/cordova-plugin-simple-chooser#v2.0.0
 ```
 
 Supported Platforms:
