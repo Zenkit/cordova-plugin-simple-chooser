@@ -50,8 +50,11 @@ public class Chooser extends CordovaPlugin {
 	public void chooseFile (CallbackContext callbackContext, String accept) {
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType("*/*");
-		intent.putExtra(Intent.EXTRA_MIME_TYPES, accept.split(","));
+		if (!accept.equals("*/*")) {
+			intent.putExtra(Intent.EXTRA_MIME_TYPES, accept.split(","));
+		}
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);
 		intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
 
 		Intent chooser = Intent.createChooser(intent, "Select File");
